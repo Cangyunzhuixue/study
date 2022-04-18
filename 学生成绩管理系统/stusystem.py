@@ -79,7 +79,7 @@ def insert():  # 录入信息并且保存在磁盘文件中
 
 def save(lst):
     try:
-        stu_txt = open(filename, 'a', encoding='utf-8')
+        stu_txt = open(filename, 'a', encoding='utf-8')  # 如果没有这个文件可能会出差错
     except:
         stu_txt = open(filename, 'w', encoding='utf-8')
     for item in lst:
@@ -93,21 +93,27 @@ def search():
 
 def delete():
     while True:
-        student_id = int(input('请输入要删除的学生的ID：'))
+        student_id = input('请输入要删除的学生的ID：')
         if student_id != '':
             if os.path.exists(filename):
                 with open(filename, 'r', encoding='utf-8') as file:
-                    student_list = file.readlines()
+                    student_list = file.readlines()  # 读取了文件所有信息
             else:
                 student_list = []
             flag = False
             if student_list:
-                with open(filename, 'w', encoding='utf-8') as wfile:
+                with open(filename, 'w', encoding='utf-8') as wFile:
                     d = {}
                     for item in student_list:
                         d = dict(eval(item))  # 将字符串转成字典
-                        if d['id'] != student_id:
-                            wfile.write(str(d) + '\n')
+                        if d['id'] != student_id:  # 如果不是所要删除的，重新覆盖写一遍
+                            print(d['id'] == student_id)
+                            print('字典内id：', d['id'])
+                            print('输入的id：', student_id)
+                            wFile.write(str(d) + '\n')
+                            print(str(d))
+                        else:
+                            flag = True
                     if flag:
                         print(f'id为{student_id}的学生信息已被删除')
                     else:
@@ -116,8 +122,8 @@ def delete():
                 print('无学生信息')
                 break
             show()  # 删除之后重新显示所有学生
-            answer=input('是否继续删除？y/n')
-            if answer=='y':
+            answer = input('是否继续删除？y/n')
+            if answer == 'y':
                 continue
             else:
                 break
@@ -125,6 +131,33 @@ def delete():
 
 
 def modify():
+    while True:
+        student_id = input('输入你要修改的学生ID：')
+        if student_id != '':
+            if os.path.exists(filename):
+                with open(filename, 'r', encoding='utf-8') as file:
+                    student_list = file.readlines()
+                    # print(student_list)
+                    d = {}
+                    for item in student_list:
+                        d = dict(eval(item))
+                        if d['id'] == student_id:
+                            # print(d['id']==student_id)
+                            print('找到这个学生，可以修改这个学生的信息了')
+                            print(d)
+                            d['name'] = input('请输入姓名：')
+                            d['english'] = int(input('请输入英语成绩'))
+                            d['python'] = int(input('请输入python成绩'))
+                            d['java'] = int(input('请输入Java成绩'))
+
+
+
+                with open(filename,'w',encoding='utf-8') as wfile:
+                    wfile.write(student_list)
+
+
+
+
     pass
 
 
