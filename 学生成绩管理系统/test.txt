@@ -1,0 +1,3 @@
+{'id': '1002', 'name': 'drfgdrf', 'english': 145, 'python': 1454, 'java': 485}
+{'id': '1003', 'name': 'asdf', 'english': 415, 'python': 123, 'java': 523}
+{'id': '1004', 'name': 'fasdfrg', 'english': 15, 'python': 546, 'java': 131}
