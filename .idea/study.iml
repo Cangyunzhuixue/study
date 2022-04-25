@@ -5,5 +5,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CF" />
+    <orderEntry type="module" module-name="student_manage_system" />
+    <orderEntry type="module" module-name="designPattern" />
+    <orderEntry type="module" module-name="algorithm" />
   </component>
 </module>
